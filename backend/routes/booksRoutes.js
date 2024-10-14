@@ -40,13 +40,12 @@ router.get("/", async(req,res)=>{
 
         
 
-router.get("/:id", async(req,res)=>{
+router.get("/details/:id", async(req,res)=>{
     try {
         const {id} = req.params
-        const book = await Book.findById(id)
-        return res.status(200).json({
-            data: book
-        })
+        console.log(id)
+        const book = await Book.find({_id:id})
+        return res.status(200).json({ book})
     } catch (error) {   
         console.log(error.message)
         res.status(500).send({message: error.message})  
@@ -71,7 +70,7 @@ router.put("/:id", async(req,res)=>{
 
 // delete book from database        
 
-router.delete("/:id", async(req,res)=>{
+router.delete("/delete/:id", async(req,res)=>{
     try {
         const {id} = req.params
         const book = await Book.findByIdAndDelete(id)
