@@ -1,14 +1,16 @@
 import express from "express"
 import { PORT,DbConnection } from "./config.js"
 import router from "./routes/booksRoutes.js"
-import mongoose from 'mongoose'
+import mongoose from "mongoose"
 import cors from "cors"
+import authRoutes from "./routes/auth.js"
+import errorHandler from "./middleware/errorHandler.js"
 
-import { Book } from "./models/bookModel.js"
 
 const app = express()
 app.use(express.json())
 app.use(cors())
+app.use(errorHandler)
 
 
 app.get("/",(req,res)=>{
@@ -18,7 +20,7 @@ app.get("/",(req,res)=>{
 
 })
 app.use("/books", router)
-
+app.use("/api/auth", authRoutes)
 mongoose
 .connect(DbConnection)
 .then(()=>{

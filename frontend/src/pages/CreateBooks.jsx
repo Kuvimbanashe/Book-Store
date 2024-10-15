@@ -25,27 +25,29 @@ const CreateBooks = () => {
     } 
   }
   return (
-    <div>
-      <h2 className='text-2xl font-bold text-sky-800 my-3'>Create Book</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='flex flex-col'>
-          <label htmlFor='title'>Title</label>
-          <input type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value)} className='border border-slate-500 rounded-md p-1' />
+    <div className='flex flex-col items-center justify-center h-screen bg-slate-300'>
+      <div className='flex flex-col items-center justify-center bg-white rounded-md w-1/2 h-2/3 '>
+      <h2 className='text-2xl font-bold text-sky-800 '>Create Book</h2>
+      <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center'>
+        <div className=' grid grid-cols-2 gap-2'>
+          <label htmlFor='title'>Title </label>
+          <input type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value)} className='border border-slate-500 rounded-md p-1 my-3' />
 
         </div>
-        <div className='flex flex-col my-2'>
+        <div className=' grid grid-cols-2 gap-2'>
           <label htmlFor='author'>Author</label>
-          <input type='text' id='author' value={author} onChange={(e) => setAuthor(e.target.value)} className='border border-slate-500 rounded-md p-1' />
+          <input type='text' id='author' value={author} onChange={(e) => setAuthor(e.target.value)} className='border border-slate-500 rounded-md p-1 my-3' />
         </div>
-        <div className='flex flex-col my-2'>
+        <div className=' grid grid-cols-2 gap-2'>
           <label htmlFor='publishYear'>Publish Year</label>
-          <input type='text' id='publishYear' value={publishYear} onChange={(e) => setPublishYear(e.target.value)} className='border border-slate-500 rounded-md p-1' />
+          <input type='text' id='publishYear' value={publishYear} onChange={(e) => setPublishYear(e.target.value)} className='border border-slate-500 rounded-md p-1 my-3' />
         </div>
-        <button className='bg-sky-800 text-white px-4 py-2 rounded-md my-2'>Add Book</button>
+        <button className='bg-sky-800 text-white px-4 py-2 rounded-md my-2 hover:bg-sky-900 w-2/3'>Add Book</button>
         {loading && <Spinner />}
-        {error && <div>{error}</div>}
+        {error && <div className='text-red-500'>{error}</div>}
 
       </form>
+      </div>
     </div>
   )
 }
