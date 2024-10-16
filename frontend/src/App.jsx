@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import { Route,Routes} from 'react-router-dom'
 import CreateBooks from './pages/CreateBooks'
 import DeleteBook from './pages/DeleteBook'
@@ -9,10 +6,9 @@ import Home from './pages/Home'
 import ShowBook from './pages/ShowBook'
 import Signup from './pages/Signup' 
 import Login from './pages/Login'
+import ViewImages from './pages/ViewImages'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <Routes>
       <Route path='/' element={<Login/>} />
@@ -23,6 +19,7 @@ function App() {
       <Route path='/books/details/:id' element={<ShowBook/>} />    
       <Route path='/signup' element={<Signup/>} />    
       <Route path='/login' element={<Login/>} />    
+      <Route path='/images' element={<ViewImages/>} />    
     </Routes>
   )
 }

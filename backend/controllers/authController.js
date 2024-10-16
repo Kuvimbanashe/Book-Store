@@ -6,13 +6,18 @@ import asyncHandler from '../middleware/asyncHandler.js';
 // signup user
 const signupUser = asyncHandler(async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password ,confirmPassword} = req.body;
         console.log(req.body)
-
-        if (!username || !email || !password) {
+        if (!username || !email || !password || !confirmPassword) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required"
+            });
+        }
+        if (password !== confirmPassword) {
+            return res.status(400).json({
+                success: false,
+                message: "Password and Confirm Password must be same"
             });
         }
 

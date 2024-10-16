@@ -1,8 +1,9 @@
 import { Book } from "../models/bookModel.js"
 import express from "express"
 const router = express.Router()
+import { authenticatorJWT } from "../middleware/authenticatorJWT.js";
 
-router.post("/", async(req,res)=>{
+router.post("/", authenticatorJWT, async(req,res)=>{
     try {
         const {title, author, publishYear} = req.body;
 
@@ -27,7 +28,7 @@ router.post("/", async(req,res)=>{
 
 // get all books from database
 
-router.get("/", async(req,res)=>{
+router.get("/", authenticatorJWT, async(req,res)=>{
     try {
         const books = await Book.find()
         console.log(books)
@@ -40,7 +41,7 @@ router.get("/", async(req,res)=>{
 
         
 
-router.get("/details/:id", async(req,res)=>{
+router.get("/details/:id", authenticatorJWT, async(req,res)=>{
     try {
         const {id} = req.params
         console.log(id)
@@ -54,7 +55,7 @@ router.get("/details/:id", async(req,res)=>{
 
 // update book in database
 
-router.put("/:id", async(req,res)=>{
+router.put("/:id", authenticatorJWT, async(req,res)=>{
     try {
         const {id} = req.params
         const {title, author, publishYear} = req.body
@@ -70,7 +71,7 @@ router.put("/:id", async(req,res)=>{
 
 // delete book from database        
 
-router.delete("/delete/:id", async(req,res)=>{
+router.delete("/delete/:id", authenticatorJWT, async(req,res)=>{
     try {
         const {id} = req.params
         const book = await Book.findByIdAndDelete(id)
